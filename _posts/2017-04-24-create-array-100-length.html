@@ -1,0 +1,13 @@
+---
+layout: post
+title: 构建一个长度为100并且值为索引的数组
+---
+<h2>{{ page.title }}</h2>
+<p class="mata">{{ page.date | date_to_string }}</p>
+
+<p>阿里游戏面试题</p>
+<p>在看到此种解法前，基本都是用循环实现。下面这段代码简捷使用。</p>
+<pre>var a = Array(100).join(',').split(',').map(function(item, index){
+    return index;
+});
+</pre>
