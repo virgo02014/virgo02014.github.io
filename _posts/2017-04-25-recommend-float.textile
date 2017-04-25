@@ -1,0 +1,32 @@
+---
+layout: post
+title: 推荐浮动方法
+---
+
+h1. {{ page.title }}
+
+p(meta). {{ page.date | date_to_string }}
+
+{% highlight ruby %}
+.clearfix {
+    zoom: 1; /*IE低版本浏览器不支持after伪类所以要加这一句*/
+    &:after {
+        height: 0;
+        content: " ";
+        display: block;
+        overflow: hidden;
+        clear: both;
+    }
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+<div class="clearfix">
+    <div class="left"></div>
+    <div class="right"></div>
+</div>
+{% endhighlight %}
