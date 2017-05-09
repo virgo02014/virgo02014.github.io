@@ -1,0 +1,36 @@
+---
+layout: post
+title: 遍历选择 ngRepeat 还是 ngOptions
+---
+
+h1. {{ page.title }}
+
+p(meta). {{ page.date | date_to_string }}
+
+p. 两者都是下拉列表
+p. 区别:
+    1. select 中 ng-repeat 写在 option 里， ng-options 是自动生成 option。
+    2. ng-options 一定和 ng-model 搭配使用。
+    3. ng-repeat 的 value 值是 string， 当是 number 时， 下拉列表失败。
+        <pre><option value="? number:1 ?" selected="selected"></option></pre>
+    4. ng-options 的 value 值是 string 或者 number。
+
+{% highlight ruby %}
+<select ng-model="repeat.strId">
+    <option value="">str repeat</option>
+    <option ng-repeat="a in str" value={{a.id}} ng-bind="a.name"></option>
+</select>
+
+<select ng-model="repeat.numId">
+    <option value="">num repeat --> "error"</option>
+    <option ng-repeat="a in num" value={{a.id}} ng-bind="a.name"></option>
+</select>
+
+<select ng-model="option.strId" ng-options="b.id as b.name for b in str">
+    <option value="">str options</option>
+</select>
+
+<select ng-model="option.numId" ng-options="b.id as b.name for b in num">
+    <option value="">arr options</option>
+</select>
+{% endhighlight %}
