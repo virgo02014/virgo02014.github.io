@@ -2,18 +2,17 @@
 layout: post
 title: 遍历选择 ngRepeat 还是 ngOptions
 ---
+<h2>{{ page.title }}</h2>
+<p class="meta">{{ page.date | date_to_string }}</p>
 
-h1. {{ page.title }}
-
-p(meta). {{ page.date | date_to_string }}
-
-p 两者都是下拉列表
-p 区别:
-    1. select 中 ng-repeat 写在 option 里， ng-options 是自动生成 option。
-    2. ng-options 一定和 ng-model 搭配使用。
-    3. ng-repeat 的 value 值是 string， 当是 number 时， 下拉列表失败。
-        <pre><code><option value="? number:1 ?" selected="selected"></option></code></pre>
-    4. ng-options 的 value 值是 string 或者 number。
+<p>两者都是下拉列表</p>
+<p>区别:<br>
+    1. select 中 ng-repeat 写在 option 里， ng-options 是自动生成 option。<br>
+    2. ng-options 一定和 ng-model 搭配使用。<br>
+    3. ng-repeat 的 value 值是 string， 当是 number 时， 下拉列表失败。<br>
+        < option value="? number:1 ?" selected="selected"></option><br>
+    4. ng-options 的 value 值是 string 或者 number。<br>
+</p>
 
 {% highlight ruby %}
 <select ng-model="repeat.strId">
