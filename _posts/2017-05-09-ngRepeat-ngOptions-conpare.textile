@@ -7,12 +7,12 @@ h1. {{ page.title }}
 
 p(meta). {{ page.date | date_to_string }}
 
-p. 两者都是下拉列表
-p. 区别:
+p 两者都是下拉列表
+p 区别:
     1. select 中 ng-repeat 写在 option 里， ng-options 是自动生成 option。
     2. ng-options 一定和 ng-model 搭配使用。
     3. ng-repeat 的 value 值是 string， 当是 number 时， 下拉列表失败。
-        <pre><option value="? number:1 ?" selected="selected"></option></pre>
+        <pre><code><option value="? number:1 ?" selected="selected"></option></code></pre>
     4. ng-options 的 value 值是 string 或者 number。
 
 {% highlight ruby %}
