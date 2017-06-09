@@ -1,0 +1,96 @@
+---
+layout: post
+title: 用 javaScript 脚本取某页面使用类名次数最多前三个
+---
+<h2>{{ page.title }}</h2>
+<p class="meta">{{ page.date | date_to_string }}</p>
+
+{% highlight ruby %}
+
+/*
+ * 1. 取得 body 节点
+ * 2. 递归子节点类名对象
+ *        如果支持 jQuery：可以用 $('body *') 获取 body 下所有子节点
+ * 3. 以对象值为索引做成对象，并且初始化 长度为3 的数组
+ * 4. 替换取前三
+ *         数组中存在该类名，替换该类名
+ *         否则，替换数组中最小值
+ * 5. 结果
+ *         resultCount 使用次数数组
+ *         resultName  对应类名数组
+ */
+
+(function() {
+    classObj = {};
+    resultCount = [];
+    resultName = [];
+
+    function getAllClass() {
+        var bodyList;
+
+        bodyList = Array.prototype.slice.call(document.getElementsByTagName('body'));
+        bodyList.forEach(function(ele) {
+            nodeRecursion(ele);
+        });
+        console.log(resultCount, resultName);
+    }
+
+    function nodeRecursion(element) {
+        var childNode,
+            count = 1;
+
+        if (element.className) {
+            element.classList.forEach(function(className) {
+                if (classObj[className]) {
+                    count = ++classObj[className];
+                    maxCount(count, className);
+                } else {
+                    classObj[className] = 1;
+                    if (resultCount.length < 3) {
+                        resultCount.push(1);
+                        resultName.push(className);
+                    }
+                }
+            });
+        }
+
+        if (element.childNodes.length > 0) {
+            childNode = Array.prototype.slice.call(element.childNodes);
+            childNode.forEach(function(ele) {
+                return nodeRecursion(ele);
+            });
+        }
+        return classObj;
+    }
+
+    function maxCount (count, className) {
+        var min = resultCount[0],
+            len = resultCount.length,
+            i,
+            idx,
+            index = 0;
+        for (i = 0; i < len; i++) {
+            if (resultCount[i] < min) {
+                min = resultCount[i];
+                index = i;
+            }
+        }
+
+        idx = resultName.indexOf(className);
+        if (idx == -1) {
+            if (min < count) {
+                resultCount[index] = count;
+                resultName[index] = className;
+            }
+        } else {
+            resultCount[idx] = count;
+            resultName[idx] = className;
+        }
+
+    }
+
+    getAllClass();
+
+})();
+
+{% endhighlight %}

@@ -11,7 +11,7 @@
     　　　　|　　　|--　2012-08-25-hello-world.html  `年-月-日-文章标题.后缀名`
     　　　　|--　index.html  `首页`
 
-[My Blog](https://virgo9.github.io/jekyll/)
+[My Blog](https://virgo9.github.io/)
 
 [创始人](http://tom.preston-werner.com/)
 [reference](http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html)
