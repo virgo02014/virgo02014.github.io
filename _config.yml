@@ -1,18 +1,16 @@
-# Hexo Configuration
-## Docs: https://hexo.io/docs/configuration.html
-## Source: https://github.com/hexojs/hexo/
+# Welcome to My Blog!
 
 # Site
-title: Hexo
+title: Virgo Blog
 subtitle:
 description:
-author: John Doe
+author:
 language:
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url:
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -63,7 +61,15 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: minima
+# virgo add start
+markdown: kramdown
+gems:
+  - jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock
+# virgo add end
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
