@@ -1,6 +1,8 @@
 ### My Blog [Jekyll](http://jekyllrb.com/docs/configuration/)
 
 > 搭建博客，并将静态部署到 github pages， 也能动态部署到 Server。
+> bundle exec jekyll serve
+> http://localhost:4000
 
     /demo
     　　　　|--　_config.yml `设置文件`
@@ -12,6 +14,6 @@
 
 [My Blog](https://virgo9.github.io/)
 
-[创始人](http://tom.preston-werner.com/)
+<!-- [创始人](http://tom.preston-werner.com/) -->
 
-[reference](http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html)
+<!-- [reference](http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html) -->
