@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务列表</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <style type="text/css">
+        .checkbox { width: 100%; margin-bottom: 0; padding: .75rem 1.25rem; }
+        .checkbox .time { margin-right: 20px; opacity: 0.5; }
+        .done > .checkbox > span { color: #aaa; text-decoration: line-through; }
+        .modal.show { display: block; }
+    </style>
+</head>
+<body class="container" ng-app="Task" ng-controller="tackCtrl">
+    <header>
+        <h1 class="display-3">任务列表
+        <div class="float-right" ng-if="todoList.length">
+            <button type="button" class="btn btn-secondary" ng-click="clearRecords()"
+                    data-toggle="modal" data-target="#exampleModalLong">清空记录</button>
+            <button type="button" class="btn btn-secondary" ng-click="getHistory()"
+                    data-toggle="modal" data-target="#exampleModalLong">查看历史</button>
+        </div>
+        </h1>
+        <hr>
+    </header>
+    <section ng-init="initData()">
+        <form class="input-group input-group-lg">
+            <input type="text" class="form-control" ng-model="text">
+            <span class="input-group-btn">
+                <button class="btn btn-secondary" ng-click="add()">添加</button>
+            </span>
+        </form>
+        <ul class="list-group my-2">
+            <li class="list-group-item p-0" ng-repeat="item in todoList track by $index" ng-class="{'done': item.done}">
+                <label class="checkbox list-group-item-action">
+                    <input type="checkbox" ng-model="item.done" ng-click="storageData('select', item)">
+                    <span ng-bind="item.text"></span>
+                    <p class="float-right mb-0">
+                        <span class="time" ng-bind="item.time | date: 'MM/dd/yyyy h:mma'"></span>
+                        <button type="button" class="close" aria-label="Close" ng-click="delete(item.text, $index)">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                    </p>
+                </label>
+            </li>
+        </ul>
+        <p class="mb-0" ng-if="todoList.length">
+            总共<strong ng-bind="todoList.length"></strong>个任务，
+            已完成<strong ng-bind="doneCount()"></strong>个
+        </p>
+    </section>
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">历史记录</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            ng-click="closeModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group my-2">
+                        <li class="list-group-item p-0" ng-class="{'done': item.done}"
+                            ng-repeat="item in historyList track by $index">
+                            <label class="checkbox list-group-item-action">
+                                <span ng-bind="item.text"></span>
+                                <p class="float-right mb-0">
+                                    <span class="time" ng-bind="item.time | date: 'MM/dd/yyyy h:mma'"></span>
+                                </p>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="backdrop fade show"></div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/angular.js/1.4.6/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="task.js"></script>
+</body>
+
+</html>
