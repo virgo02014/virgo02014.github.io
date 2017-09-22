@@ -44,8 +44,8 @@
                         key: +date + Math.floor(Math.random() * 90 + 10),
                         done: false
                     };
-                    $scope.todoList.push(temp);
-                    $scope.historyList.push(temp);
+                    $scope.todoList.unshift(temp);
+                    $scope.historyList.unshift(temp);
                     $scope.storageData('all');
                     $scope.text = '';
                 }
