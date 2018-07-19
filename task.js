@@ -32,6 +32,9 @@
                     $scope.todoList = JSON.parse(window.localStorage.getItem('task')) || [];
                     $scope.historyList = JSON.parse(window.localStorage.getItem('taskHistory')) || [];
                 }
+                $scope.todoList.sort(function(a, b){
+                    return a.done - b.done;
+                });
             };
 
             $scope.add = function () {
